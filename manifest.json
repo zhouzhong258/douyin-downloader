@@ -1,0 +1,46 @@
+{
+  "manifest_version": 3,
+  "name": "抖音内容下载器",
+  "version": "1.0.0",
+  "description": "在抖音网页版点一下，下载当前打开的视频 / 图文动图 / 图集到本地（无需登录）。",
+  "permissions": ["scripting", "downloads", "declarativeNetRequest", "notifications"],
+  "host_permissions": [
+    "*://*.douyin.com/*",
+    "*://*.douyinvod.com/*",
+    "*://*.douyinpic.com/*",
+    "*://*.douyinstatic.com/*",
+    "*://*.zjcdn.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.douyin.com/*"],
+      "js": ["inject.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": ["*://*.douyin.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "action": {
+    "default_title": "下载当前抖音内容",
+    "default_icon": "icon128.png"
+  },
+  "icons": {
+    "128": "icon128.png"
+  },
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "referer_rules",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  }
+}

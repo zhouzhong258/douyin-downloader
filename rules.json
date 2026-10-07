@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": {
+      "type": "modifyHeaders",
+      "requestHeaders": [
+        {
+          "header": "referer",
+          "operation": "set",
+          "value": "https://www.douyin.com/"
+        }
+      ]
+    },
+    "condition": {
+      "requestDomains": ["douyinvod.com", "douyinpic.com", "douyinstatic.com", "zjcdn.com"],
+      "resourceTypes": ["main_frame", "media", "xmlhttprequest", "image", "other"]
+    }
+  }
+]
